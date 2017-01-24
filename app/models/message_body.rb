@@ -1,0 +1,2 @@
+class MessageBody < ApplicationRecord
+end
