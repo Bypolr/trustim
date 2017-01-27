@@ -4,7 +4,7 @@ default: &default
   timeout: 5000
   encoding: unicode
   username: trust
-  password: 
+  password: trust
 
 development:
   <<: *default

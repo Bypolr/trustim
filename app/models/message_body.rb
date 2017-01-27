@@ -1,2 +1,0 @@
-class MessageBody < ApplicationRecord
-end

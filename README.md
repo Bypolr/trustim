@@ -16,12 +16,12 @@ Things you may want to cover:
 * Configuration
   
 * Database creation
-
-    create user trust
-    create database -Otrust trust_development 
-    create database -Otrust trust_test
-    create database -Otrust trust_production
-  
+```
+create user trust
+create database -Otrust trust_development 
+create database -Otrust trust_test
+create database -Otrust trust_production
+```
 * Database initialization
 
 * How to run the test suite

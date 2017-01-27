@@ -1,2 +1,0 @@
-class MessageRelation < ApplicationRecord
-end

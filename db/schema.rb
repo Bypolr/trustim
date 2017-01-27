@@ -10,37 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124154415) do
+ActiveRecord::Schema.define(version: 20170126132603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
-  enable_extension "uuid-ossp"
 
-  create_table "message_bodies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.text     "body"
+  create_table "chatrooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "message_relations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.serial   "serialid",    null: false
-    t.uuid     "sender_id"
-    t.uuid     "receiver_id"
-    t.uuid     "body_id"
+  create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid     "user_id"
+    t.uuid     "chatroom_id"
+    t.text     "body",        null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
-  create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "name"
-    t.string   "password"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string   "username",   limit: 50,  null: false
+    t.string   "password",   limit: 50,  null: false
+    t.string   "email",      limit: 100, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_foreign_key "message_relations", "message_bodies", column: "body_id"
-  add_foreign_key "message_relations", "users", column: "receiver_id"
-  add_foreign_key "message_relations", "users", column: "sender_id"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
 end
