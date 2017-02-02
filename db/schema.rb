@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126132603) do
+ActiveRecord::Schema.define(version: 20170130131212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+  enable_extension "uuid-ossp"
 
   create_table "chatrooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string   "name",       null: false
@@ -33,11 +34,13 @@ ActiveRecord::Schema.define(version: 20170126132603) do
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string   "username",   limit: 50,  null: false
-    t.string   "password",   limit: 50,  null: false
-    t.string   "email",      limit: 100, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "username",        limit: 50,  null: false
+    t.string   "email",           limit: 256, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
   add_foreign_key "messages", "chatrooms"
