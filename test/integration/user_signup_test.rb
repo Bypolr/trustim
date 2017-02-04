@@ -23,13 +23,14 @@ class UserSignupTest < ActionDispatch::IntegrationTest
 			post users_path, params: {user: {
 				username: 'yiliang111',
 				email:'ydatylmon@gmail.com',
-				password: 'q8zkp4gtyx',
-				password_confirmation: 'q8zkp4gtyx'
+				password: 'qqq111',
+				password_confirmation: 'qqq111'
 				}}
 		end
 
 		follow_redirect!
 		assert_template 'users/show'
 		assert_not flash.empty?
+    assert is_logged_in?
 	end
 end
