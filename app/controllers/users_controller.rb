@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+  
   def new
   	@user = User.new
   end
 
   def show
-  	@user = User.find_by(id: params[:id])
+  	@user = User.find(params[:id])
   end
 
   def create
@@ -20,7 +21,17 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "#{@user.username}'s prifile updated successfully."
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
 
   private
