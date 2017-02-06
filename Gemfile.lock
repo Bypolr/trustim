@@ -60,6 +60,8 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     ffi (1.9.17)
     formatador (0.2.5)
     globalid (0.3.7)
@@ -203,6 +205,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.7)
   byebug
   coffee-rails (~> 4.2)
+  faker (~> 1.7.3)
   guard (~> 2.14.0)
   guard-minitest (~> 2.4.4)
   jbuilder (~> 2.5)

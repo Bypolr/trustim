@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 20170204144341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pgcrypto"
   enable_extension "uuid-ossp"
+  enable_extension "pgcrypto"
 
   create_table "chatrooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string   "name",       null: false
