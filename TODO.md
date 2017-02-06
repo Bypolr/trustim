@@ -1,4 +1,4 @@
-1. user email verification
+1. user activation √
 2. chatroom and message
 3. status/message sync
 4. API
