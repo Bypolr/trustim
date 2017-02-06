@@ -14,6 +14,9 @@ class User < ApplicationRecord
             length: { maximum: 255 },
             format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  
+  # will_paginate per_page settings for this model
+  self.per_page = 20
 
   # Returns the hash digest of the given password. For test fixture.
   def User.digest(string)

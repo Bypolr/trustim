@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_action :check_logged_in, only: [:edit, :update, :index]
+  before_action :check_logged_in, only: [:edit, :update, :index, :destroy]
   before_action :check_correct_user, only: [:edit, :update]
+  before_action :check_admin_user, only: [:destroy]
   
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
   
   def new
@@ -28,7 +29,6 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
-    flash[:info] = "Leave password blank if you don't want to change."
   end
   
   def update
@@ -39,6 +39,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_path
   end
 
   private
@@ -62,5 +68,10 @@ class UsersController < ApplicationController
     def check_correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
+    end
+    
+    # Confirms an admin user.
+    def check_admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end
