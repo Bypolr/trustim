@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
+  
   has_secure_password
   
   before_save { self.email = email.downcase }
@@ -12,7 +13,7 @@ class User < ApplicationRecord
             presence: true, uniqueness: { case_sensitive: false },
             length: { maximum: 255 },
             format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   # Returns the hash digest of the given password. For test fixture.
   def User.digest(string)
