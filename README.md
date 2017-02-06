@@ -29,8 +29,6 @@ create database -Otrust trust_production
 
 * Deployment instructions
 
-On macOs:
-
 1. install rbenv for ruby version management
 2. `rbenv install 2.4.0`
 3. install postgres v9.6 by homebrew or from source code
@@ -39,3 +37,4 @@ On macOs:
 6. `bundle`
 7. DB creation
 8. `rails s`
+9. setup smtp server and fill in smtp server info in production.rb
