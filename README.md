@@ -4,26 +4,27 @@ This Demo tend to implement features using as pure Rails as possible.
 
 * Ruby version
 
-  2.4.0
+    2.4.0
   
 * System dependencies
 
-  Postgres 9.6
+    Postgres 9.6
 
 * Configuration
   
 * Database creation
 ```
 create user trust
-create database -Otrust trust_development 
+create database -Otrust trust_development
 create database -Otrust trust_test
 create database -Otrust trust_production
 ```
+
 * Database initialization
 
 * How to run the test suite
 
-`rails test`
+    rails test
   
 * Services (job queues, cache servers, search engines, etc.)
 
