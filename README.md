@@ -1,31 +1,40 @@
 # README
-Trust IM sample web app.
-This Demo tend to implement features using as pure Rails as possible.
+Trust IM sample app.
+This demo tends to implement features using as pure Rails as possible.
 
 * Ruby version
 
-    2.4.0
-  
+  2.4.0
+
 * System dependencies
 
-    Postgres 9.6
+  Postgres 9.6
 
 * Configuration
-  
-* Database creation
-```
-create user trust
-create database -Otrust trust_development
-create database -Otrust trust_test
-create database -Otrust trust_production
-```
+
+* Database Creation
+
+  ```
+  create user trust
+  create database -Otrust trust_development
+  create database -Otrust trust_test
+  create database -Otrust trust_production
+  ```
+
 
 * Database initialization
 
+  ```
+  rails db:reset
+  rails db:seed
+  ```
+
 * How to run the test suite
 
-    rails test
-  
+  ```
+  rails test
+  ```
+
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
@@ -37,5 +46,5 @@ create database -Otrust trust_production
 5. check out the git repository
 6. `bundle`
 7. DB creation
-8. `rails s`
+8. `rails server`
 9. setup smtp server and fill in smtp server info in production.rb
