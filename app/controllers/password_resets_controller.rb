@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:password_reset][:email].downcase)
+    @user = User.find_by(email: params[:password_reset][:email])
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
@@ -27,6 +27,7 @@ class PasswordResetsController < ApplicationController
         @user.errors.add(:password, "can't be empty")
         render 'edit'
     elsif @user.update_attributes(user_params)
+      @user.update_attribute(:reset_digest, nil)
       log_in @user
       flash[:success] = "Password has been reset."
       redirect_to @user
