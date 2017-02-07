@@ -4,7 +4,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:michael)
   end
-  
+
   test "unsuccessful edit" do
     log_in_as(@user)
     get edit_user_path(@user)
@@ -14,7 +14,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
     assert_select 'div.alert', /\d errors/
   end
-  
+
   test "successful edit" do
     # GET to edit user without login.
     get edit_user_path(@user)
@@ -24,12 +24,12 @@ class UserEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_user_url(@user)
     # Check forwarding_url removed from session.
     assert_not session[:forwarding_url]
-    
+
     username = "Foo Bar"
     email = "foo@bar.com"
     patch user_path(@user), params: {
       user: { username: username, email: email, password: "", password_confirmation: "" } }
-    
+
     assert_not flash.empty?
     assert_redirected_to @user
     @user.reload

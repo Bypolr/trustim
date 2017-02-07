@@ -12,7 +12,7 @@ class ActiveSupport::TestCase
   def is_logged_in?
     !session[:user_id].nil?
   end
-  
+
   def log_in_as(user)
     session[:user_id] = user.id
   end
@@ -23,7 +23,7 @@ class ActionDispatch::IntegrationTest
   def log_in_as(user, options = {})
     options_default = { password: 'password', remember_me: '1' }
     options.reverse_merge!(options_default)
-    post login_path, params: { session: { 
+    post login_path, params: { session: {
       email: user.email, password: options[:password], remember_me: options[:remember_me] } }
   end
 end
