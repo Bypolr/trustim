@@ -129,3 +129,5 @@ Temporary Items
 # Directories potentially created on remote AFP share
 
 # End of https://www.gitignore.io/api/rails,ruby,osx,macos
+/public/packs
+/vendor/node_modules
