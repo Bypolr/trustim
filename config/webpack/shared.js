@@ -19,7 +19,7 @@ module.exports = {
     rules: [
       { test: /\.coffee(.erb)?$/, loader: "coffee-loader" },
       {
-        test: /\.js(.erb)?$/,
+        test: /\.js(x|.erb)?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
