@@ -52,10 +52,9 @@ GEM
     autoprefixer-rails (6.7.2)
       execjs
     bcrypt (3.1.11)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
     builder (3.2.3)
+    bulma-rails (0.3.1)
+      sass (~> 3.2)
     byebug (9.0.6)
     coderay (1.1.1)
     coffee-rails (4.2.1)
@@ -205,8 +204,6 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     will_paginate (3.1.5)
-    will_paginate-bootstrap (1.0.1)
-      will_paginate (>= 3.0.3)
 
 PLATFORMS
   ruby
@@ -214,7 +211,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bcrypt (~> 3.1.7)
-  bootstrap-sass (~> 3.3.7)
+  bulma-rails (~> 0.3.1)
   byebug
   coffee-rails (~> 4.2)
   faker (~> 1.7.3)
@@ -237,7 +234,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webpacker!
   will_paginate (~> 3.1.0)
-  will_paginate-bootstrap
 
 RUBY VERSION
    ruby 2.4.0p0

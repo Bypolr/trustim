@@ -5,16 +5,13 @@
     <%= render 'layouts/rails_default' %>
     <%= render 'layouts/shim' %>
   </head>
-
   <body>
     <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div,message, class: "alert alert-#{message_type}") %>
-      <% end %>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= render 'layouts/debug_info' %>
-    </div>
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div,message, class: "notification is-#{message_type}") %>
+    <% end %>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+    <%= render 'layouts/debug_info' %>
   </body>
 </html>
