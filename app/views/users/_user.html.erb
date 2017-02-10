@@ -1,8 +1,9 @@
 <li>
   <%= gravatar_for user, size: 50 %>
   <%= link_to user.username, user %>
+  <%= link_to 'chat', show_conversation_path(sender_id: current_user.id, recipient_id: user.id) %>
   <% if current_user.admin? %>
-    <%= link_to 'delete', user, method: :delete, 
+    <%= link_to 'delete', user, method: :delete,
                 data: { confirm: "You sure to delete #{user.username}?" } %>
   <% end %>
 </li>

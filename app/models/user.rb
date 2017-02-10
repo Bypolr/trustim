@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  has_many :messages
-  has_many :chatrooms, through: :messages
+  has_many :messages, inverse_of: :user
+  has_and_belongs_to_many :chatrooms
 
   validates :username, presence: true, uniqueness: true, length: { maximum: 50 }
   validates :email,
