@@ -9,6 +9,12 @@
   background-color: #fff;
 }
 
+.pagination {
+  & > a {
+    @extend .pagination-link;
+  }
+}
+
 .nav {
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;

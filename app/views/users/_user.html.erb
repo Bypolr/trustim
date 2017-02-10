@@ -1,8 +1,12 @@
-<li>
-  <%= gravatar_for user, size: 50 %>
-  <%= link_to user.username, user %>
-  <% if current_user.admin? %>
-    <%= link_to 'delete', user, method: :delete, 
-                data: { confirm: "You sure to delete #{user.username}?" } %>
-  <% end %>
+<li class="user-item media">
+  <div class="media-left">
+    <%= gravatar_for user, size: 50, class: "image is-64x64" %>
+  </div>
+  <div class="media-content">
+    <%= link_to user.username, user, class: "user-name" %>
+    <% if current_user.admin? %>
+      <%= link_to 'delete', user, method: :delete, class: "admin-action",
+                  data: { confirm: "You sure to delete #{user.username}?" } %>
+    <% end %>
+  </div>
 </li>
