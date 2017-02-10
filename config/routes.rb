@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get    '/contact', to: 'static_pages#contact'
   get    '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'
+  get    '/react',   to: 'static_pages#react'
+  get    '/chatroom',to: 'chatroom#show'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
