@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
+  	@user = User.find_by(username: params[:id])
     unless @user.activated?
       redirect_to root_url
     end
@@ -30,13 +30,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(username: params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by(username: params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "#{@user.username}'s prifile updated successfully."
+      flash[:success] = "#{@user.username}'s profile updated successfully."
       redirect_to @user
     else
       render :edit
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    User.find_by(username: params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to users_path
   end
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 
     # Confirms the correct user.
     def check_correct_user
-      @user = User.find(params[:id])
+      @user = User.find_by(username: params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
 

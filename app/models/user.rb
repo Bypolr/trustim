@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :messages, inverse_of: :user
-  has_and_belongs_to_many :chatrooms
 
   validates :username, presence: true, uniqueness: true, length: { maximum: 50 }
   validates :email,
@@ -18,6 +17,11 @@ class User < ApplicationRecord
 
   # will_paginate per_page settings for this model
   self.per_page = 20
+
+  # over this method to use username to construct url
+  def to_param
+    username
+  end
 
   # Returns the hash digest of the given password. For test fixture.
   def User.digest(string)
