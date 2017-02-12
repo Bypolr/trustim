@@ -1,50 +1,75 @@
 # README
+
 Trust IM sample app.
 This demo tends to implement features using as pure Rails as possible.
 
-* Ruby version
+## Table of Contents
 
-  2.4.0
+* [**Project Details**](#project-details)
+  * [Requirements](#requirements)
+* [**Getting Started**](#getting-started)
+  * [Setup](#setup)
+  * [Other](#other)
+  * [Run the test suite](run-the-test-suite)
+  * [Yarn installation](yarn-installation)
 
-* System dependencies
+## Project Details
 
-  Postgres 9.6
+Learn more about the **trustim** project requirements, licensing, and contributions.
 
-* Configuration
+### Requirements
 
-* Database Creation
+- Ruby v2.4.0
+- Postgres v9.6
 
-  ```
-  create user trust
-  create database -Otrust trust_development
-  create database -Otrust trust_test
-  create database -Otrust trust_production
-  ```
+## Getting Started
+
+### Setup
+
+1. Install rbenv for ruby version management.
+2. Run command `rbenv install 2.4.0` to install ruby.
+3. Install postgres v9.6 by homebrew or from source code.
+4. Run command `gem install bundler` to install bundler.
+5. Check out the git repository.
+6. Run command `bundle` in the project directory to install the dependencies.
+
+DB creation
+
+`rails server`
+
+### Other
+
+Setup smtp server and fill in smtp server info in production.rb
+
+Services (job queues, cache servers, search engines, etc.)
 
 
-* Database initialization
+### Run the test suite
 
-  ```
-  rails db:reset
-  rails db:seed
-  ```
+```bash
+rails test
+```
 
-* How to run the test suite
+### Yarn installation
 
-  ```
-  rails test
-  ```
+Please use `bin/yarn` command instead of the global `yarn` command.
+because global `yarn` command will install dependencies in the project root
+instead of `vendor` directory.
 
-* Services (job queues, cache servers, search engines, etc.)
+Run following command to install dependencies.
 
-* Deployment instructions
+```bash
+bin/yarn
+```
 
-1. install rbenv for ruby version management
-2. `rbenv install 2.4.0`
-3. install postgres v9.6 by homebrew or from source code
-4. `gem install bundler`
-5. check out the git repository
-6. `bundle`
-7. DB creation
-8. `rails server`
-9. setup smtp server and fill in smtp server info in production.rb
+To add a npm package:
+
+```bash
+bin/yarn add <package-name>
+```
+
+To add a npm package for development environment:
+
+```bash
+bin/yarn add -D <package-name>
+```
