@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/rails/webpacker.git
+  revision: 02c3df0f677fbc4709dd237c9b7ebcd97fb97e9e
+  specs:
+    webpacker (0.2)
+      activesupport (>= 3.0.0, < 5.1)
+      multi_json (~> 1.2)
+      railties (~> 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -226,6 +235,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  webpacker!
   will_paginate (~> 3.1.0)
   will_paginate-bootstrap
 

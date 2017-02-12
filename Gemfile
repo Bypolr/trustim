@@ -25,6 +25,7 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'faker', '~> 1.7.3'
+  gem 'webpacker', github: 'rails/webpacker'
 end
 
 group :test do
