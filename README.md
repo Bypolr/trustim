@@ -73,3 +73,19 @@ To add a npm package for development environment:
 ```bash
 bin/yarn add -D <package-name>
 ```
+
+### webpacker
+
+Put your common js code in `app/javascript/packs/common.js`.
+
+For example, if you have a `app/javascript/packs/message.js` file:
+
+```js
+import Rx from 'rxjs/Rx';
+
+Rx.Observable.of(1,2,3);
+```
+
+this is a entry file, you can put it in your `message.html.erb` file:
+
+`<%= javascript_pack_tag 'message' %>`
