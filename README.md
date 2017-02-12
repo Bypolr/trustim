@@ -32,10 +32,8 @@ Learn more about the **trustim** project requirements, licensing, and contributi
 4. Run command `gem install bundler` to install bundler.
 5. Check out the git repository.
 6. Run command `bundle` in the project directory to install the dependencies.
-
-DB creation
-
-`rails server`
+7. Create db schema by `bin/rails db:create`
+8. `bin/rails server`
 
 ### Other
 
