@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+  - 2.4.0
+env:
+  - RAILS_ENV=test
+addons:
+  postgresql: "9.4"
+before_script:
+  - psql -c 'create database travis_test_db;' -U postgres
+  - cp ./config/database.travis.yml ./config/database.yml
+script:
+  - bundle exec rails db:schema:load
+  - bundle exec rails db:test:prepare
+  - bundle exec rails test
+after_failure:
+  - psql -c '\dt'
+  - cat ./config/database.yml
+  - echo $RAILS_ENV
+  - bundle exec rake --version
