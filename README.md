@@ -10,8 +10,8 @@ This demo tends to implement features using as pure Rails as possible.
 * [**Getting Started**](#getting-started)
   * [Setup](#setup)
   * [Other](#other)
-  * [Run the test suite](run-the-test-suite)
-  * [Yarn installation](yarn-installation)
+  * [Run the test suite](#run-the-test-suite)
+  * [Yarn installation](#yarn-installation)
 
 ## Project Details
 
