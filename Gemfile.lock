@@ -58,13 +58,6 @@ GEM
     builder (3.2.3)
     byebug (9.0.6)
     coderay (1.1.1)
-    coffee-rails (4.2.1)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.2.x)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
     debug_inspector (0.0.2)
     erubis (2.7.0)
@@ -216,7 +209,6 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.7)
   byebug
-  coffee-rails (~> 4.2)
   faker (~> 1.7.3)
   guard (~> 2.14.0)
   guard-minitest (~> 2.4.4)
