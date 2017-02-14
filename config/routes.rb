@@ -17,8 +17,10 @@ Rails.application.routes.draw do
   # Serve websocket cable resources in-process
   mount ActionCable.server => '/cable'
 
-  get 'conversations/:sender_id/:recipient_id', to: 'conversations#show', as: :show_conversation
+  # get 'conversations/:sender_id/:recipient_id', to: 'conversations#show', as: :show_conversation
+  #
+  # post 'conversations/:conversation_id/messages', to: 'messages#create', as: :messages
 
-  post 'conversations/:conversation_id/messages', to: 'messages#create', as: :messages
+  resources :messages, only: [:index, :create]
 
 end

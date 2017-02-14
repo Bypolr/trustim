@@ -9,6 +9,8 @@ class ConversationsController < ApplicationController
       @conversation = Conversation.create!(conversation_params)
     end
 
+    session[:conversation_id] = @conversation.id
+
     render :show
   end
 

@@ -1,2 +1,8 @@
-<%= message.body %>
-<br>
+<div class="message">
+  <div class="message-user">
+    <%= message.user.username %>:
+  </div>
+  <div class="message-content">
+    <%= message.body %>
+  </div>
+</div>

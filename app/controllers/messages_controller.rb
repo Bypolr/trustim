@@ -1,42 +1,37 @@
 class MessagesController < ApplicationController
 
-  before_action do
-    @conversation = Conversation.find(params[:conversation_id])
+  before_action :check_logged_in
+  before_action :get_messages
+
+  def index
   end
 
-  # def index
-  #   @messages = @conversation.messages
-  #   if @messages.length > 10
-  #     @over_ten = true
-  #     @messages = @messages[-10..-1]
-  #   end
-  #
-  #   if params[:m]
-  #     @over_ten = false
-  #     @messages = @conversation.messages
-  #   end
-  #
-  #   if @messages.last and @messages.last.user_id != current_user.id
-  #     @messages.last.read = true
-  #   end
-  #
-  #   @message = @conversation.messages.new
-  #
-  # end
-
   def create
-    @message = @conversation.messages.new(message_params)
-    if !@message.save!
-      flash[:error] = "cannot save message"
+    message = current_user.messages.build(message_params)
+    message.conversation = Conversation.all.first # test
+    if message.save
+      ActionCable.server.broadcast 'message_channel', rendered_message: rendered_message(message)
+      redirect_to messages_url
+    else
+      render 'index'
     end
-
-    redirect_to show_conversation_path(@conversation.sender_id, @conversation.recipient_id)
-
   end
 
   private
 
+  def get_messages
+    @messages = Message.for_display
+    @message = current_user.messages.build
+  end
+
   def message_params
     params.require(:message).permit(:body, :user_id)
+  end
+
+  def rendered_message(message)
+    <<-EOF
+    <div class="message"><div class="message-user">#{message.user.username}:</div>
+    <div class="message-content">#{message.body}</div></div>
+    EOF
   end
 end

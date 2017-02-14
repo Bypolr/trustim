@@ -1,0 +1,6 @@
+<div class="message-input">
+  <%= form_for(@message, remote: true) do |f| %>
+    <%= f.text_area :body %>
+    <%= f.submit "Send" %>
+  <% end %>
+</div>
