@@ -1,24 +1,17 @@
 class ConversationsController < ApplicationController
 
   before_action :check_logged_in, only: [:show]
+  before_action :check_user_pair, only: [:show]
 
   def show
-    if Conversation.between(params[:sender_id],params[:recipient_id]).present?
-      @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
-    else
-      @conversation = Conversation.create!(conversation_params)
+    @conversation = Conversation.between(@sender.id, @recipient.id).first
+    unless @conversation
+      @conversation = Conversation.create!(sender_id: @sender.id, recipient_id: @recipient.id)
     end
-
-    session[:conversation_id] = @conversation.id
-
     render :show
   end
 
   private
-
-  def conversation_params
-    params.permit(:sender_id, :recipient_id)
-  end
 
   # Before filters
 
@@ -28,6 +21,17 @@ class ConversationsController < ApplicationController
       store_location
       flash[:danger] = "Please log in."
       redirect_to login_url
+    end
+  end
+
+  # Check if users pare exists.
+  def check_user_pair
+    # TODO to test check_user_pair function
+    @sender = User.find_by(username: params[:sender_username])
+    @recipient = User.find_by(username: params[:recipient_username])
+    unless @sender && @recipient
+      flash[:danger] = "Some user does not exist."
+      redirect_to users_url
     end
   end
 

@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  include MessagesHelper
 
   before_action :check_logged_in
   before_action :get_messages
@@ -11,9 +12,11 @@ class MessagesController < ApplicationController
     message.conversation = Conversation.all.first # test
     if message.save
       ActionCable.server.broadcast 'message_channel', rendered_message: rendered_message(message)
-      redirect_to messages_url
+      redirect_to show_conversation_path(
+        sender_username_for(message), recipient_username_for(message))
     else
-      render 'index'
+      flash.now[:error] = "Message sending failed."
+      render :index
     end
   end
 
