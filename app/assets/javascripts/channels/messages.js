@@ -1,4 +1,4 @@
-App.message = App.cable.subscriptions.create("MessageChannel", {
+App.message = App.cable.subscriptions.create("MessagesChannel", {
   connected: function() {
     // Called when the subscription is ready for use on the server
   },
@@ -8,15 +8,15 @@ App.message = App.cable.subscriptions.create("MessageChannel", {
   },
 
   received: function(data) {
-    if (data.body !== '') {
-      $('#messages-table').append(data.rendered_message)
+    if (data.rendered_message) {
+      $('.conversation_view').append(data.rendered_message);
     }
   }
 });
 
 var register_submit_message = function() {
   $('#message_body').on('keydown', function(event) {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && $.trim(event.target.value)) {
       $('input').click();
       event.target.value = "";
       event.preventDefault();

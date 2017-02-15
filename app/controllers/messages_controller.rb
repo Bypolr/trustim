@@ -9,9 +9,9 @@ class MessagesController < ApplicationController
 
   def create
     message = current_user.messages.build(message_params)
-    message.conversation = Conversation.all.first # test
     if message.save
-      ActionCable.server.broadcast 'message_channel', rendered_message: rendered_message(message)
+      ActionCable.server.broadcast "message_channel_#{params[:conversation_id]}",
+                                   rendered_message: rendered_message(message)
       redirect_to show_conversation_path(
         sender_username_for(message), recipient_username_for(message))
     else
@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:body, :user_id)
+    params.require(:message).permit(:body, :user_id, :conversation_id)
   end
 
   def rendered_message(message)
