@@ -5,6 +5,7 @@ class Conversation < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   validates_uniqueness_of :sender_id, :scope => :recipient_id
+  validate :sender_cannot_be_recipient
 
   scope :between, -> (sender_id, recipient_id) do
     where("
@@ -12,4 +13,12 @@ class Conversation < ApplicationRecord
       (conversations.sender_id = ? AND conversations.recipient_id = ?)
       ", sender_id, recipient_id, recipient_id, sender_id)
   end
+
+  private
+
+    def sender_cannot_be_recipient
+      if sender_id && recipient_id && sender_id.eql?(recipient_id)
+        errors.add(:recipient_id, "can't be same as sender")
+      end
+    end
 end
