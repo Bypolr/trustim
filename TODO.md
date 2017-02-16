@@ -1,11 +1,13 @@
-[x]  User email verification
+[x] User email verification
 
-[ ] chatroom and message
+[x] chatroom and message
+
+[x] real time messages to queue
+
+[ ] multi conversation testing
 
 [ ] status/message sync
 
 [ ] api
 
 [ ] group chat
-
-[ ] real time messages to queue
