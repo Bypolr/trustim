@@ -8,12 +8,15 @@ addons:
 before_script:
   - psql -c 'create database travis_test_db;' -U postgres
   - cp ./config/database.travis.yml ./config/database.yml
+  - bundle exec sidekiq -d -L /tmp/sidekiq.log
+  - sleep 3
+services:
+  - redis-server
 script:
   - bundle exec rails db:schema:load
   - bundle exec rails db:test:prepare
   - bundle exec rails test
 after_failure:
-  - psql -c '\dt'
   - cat ./config/database.yml
   - echo $RAILS_ENV
   - bundle exec rake --version
