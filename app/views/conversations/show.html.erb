@@ -1,14 +1,12 @@
-
-<div class="conversation-view">
+<div class="conversation-view" >
   <%= render @conversation.messages %>
 </div>
 
-<div class="">
-<%= form_for :message, url: messages_path(@conversation.id),
-             method: :post do |f| %>
+<div data-conversation='<%= @conversation.id %>',
+  data-from='<%= current_user %>'>
+<%= form_for :message do |f| %>
   <%= f.text_area :body, class: 'form-control' %>
   <%= hidden_field_tag "message[user_id]", current_user.id %>
   <%= hidden_field_tag "message[conversation_id]", @conversation.id %>
-  <%= f.submit 'Send', class: "btn btn-primary", style: "display: none;" %>
 <% end %>
 </div>

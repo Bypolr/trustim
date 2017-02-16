@@ -1,18 +1,17 @@
 class MessagesChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "messages"
+    stream_from "messages_#{params[:conversation_id]}"
   end
 
   def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
+    stop_all_streams
   end
 
-  def speak(data)
-    message = Message.new(body: data['message'],
-                          user_id: current_user.id,
-                          conversation_id: session[:conversation_id])
-    if message.save!
-      ActionCable.server.broadcast 'message_channel', message: data['message']
-    end
+  def receive(payload)
+    Message.new(
+        body: payload['message'],
+        user: current_user,
+        conversation: Conversation.find(payload['conversation_id'])
+    ).save
   end
 end

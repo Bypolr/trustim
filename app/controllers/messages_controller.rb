@@ -7,18 +7,13 @@ class MessagesController < ApplicationController
   def index
   end
 
-  def create
-    message = current_user.messages.build(message_params)
-    if message.save
-      ActionCable.server.broadcast "message_channel_#{params[:conversation_id]}",
-                                   rendered_message: rendered_message(message)
-      redirect_to show_conversation_path(
-        sender_username_for(message), recipient_username_for(message))
-    else
-      flash.now[:error] = "Message sending failed."
-      render :index
-    end
-  end
+  # def create
+  #   message = current_user.messages.build(message_params)
+  #   unless message.save
+  #     flash.now[:error] = "Message sending failed."
+  #     render :index
+  #   end
+  # end
 
   private
 
