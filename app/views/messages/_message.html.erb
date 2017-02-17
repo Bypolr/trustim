@@ -1,2 +1,9 @@
-<%= message.body %>
-<br>
+<div class="message">
+  <div class="message-user">
+    <span><%= message.friendly_create_at %></span>
+    <span><%= message.user.username %>:</span>
+  </div>
+  <div class="message-content">
+    <%= message.body %>
+  </div>
+</div>

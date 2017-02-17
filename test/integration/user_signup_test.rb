@@ -21,6 +21,34 @@ class UserSignupTest < ActionDispatch::IntegrationTest
 		assert_select 'div.field_with_errors'
 	end
 
+  test "invalid username format" do
+    get signup_path
+    assert_no_difference 'User.count' do
+		  post users_path, params: { user: {
+        name: "1invalid",
+        email: "useremailis@valid.com",
+        password: "thisisavalidpassword",
+        password_confirmation: "thisisavalidpassword"
+		  } }
+    end
+    assert_template 'users/new'
+		assert_select 'div#error_explanation'
+		assert_select 'div.field_with_errors'
+
+    get signup_path
+    assert_no_difference 'User.count' do
+		  post users_path, params: { user: {
+        name: "_1invalid",
+        email: "useremailis@valid.com",
+        password: "thisisavalidpassword",
+        password_confirmation: "thisisavalidpassword"
+		  } }
+    end
+    assert_template 'users/new'
+		assert_select 'div#error_explanation'
+		assert_select 'div.field_with_errors'
+  end
+
 	test "valid signup information with account activation" do
 		get signup_path
 		assert_difference 'User.count', 1 do

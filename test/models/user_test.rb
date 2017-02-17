@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 	def setup
 		@user = User.new(
-			username: "Example User",
+			username: "exampleuser",
 			email:"user@example.com",
 			password: "foobar",
 			password_confirmation: "foobar")
@@ -73,7 +73,7 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
-  
+
   test "authenticated? should return false for a user with nil remember_digest" do
     assert_not @user.authenticated?(:remember, '')
   end

@@ -2,13 +2,14 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save :downcase_email
-  before_create :create_activation_digest
+  before_create :create_activation_digest, :downcase_username
 
   has_secure_password
 
   has_many :messages, inverse_of: :user
 
-  validates :username, presence: true, uniqueness: true, length: { maximum: 50 }
+  validates :username, presence: true, uniqueness: true, length: { maximum: 50 },
+            format: { with: /\A[a-z]+\w*\z/i }
   validates :email,
             presence: true, uniqueness: { case_sensitive: false },
             length: { maximum: 255 },
@@ -86,9 +87,12 @@ class User < ApplicationRecord
       self.email = email.downcase
     end
 
+    def downcase_username
+      self.username = username.downcase
+    end
+
     def create_activation_digest
       self.activation_token = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
-
 end
