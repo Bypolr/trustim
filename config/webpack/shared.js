@@ -3,15 +3,28 @@
 var path = require('path')
 var glob = require('glob')
 var extname = require('path-complete-extname')
+var webpack = require('webpack')
+
+var entry = glob.sync(path.join('..', 'app', 'javascript', 'packs', '*.js*')).reduce(
+  function(map, entry) {
+    var basename = path.basename(entry, extname(entry))
+    if (basename === 'common') {
+      return map;
+    }
+
+    map[basename] = entry
+    return map
+  }, {}
+) || {};
+
+// common
+entry['packs-bundle'] = [
+  'rxjs/Rx',
+  path.join('..', 'app', 'javascript', 'packs', 'common.js'),
+];
 
 module.exports = {
-  entry: glob.sync(path.join('..', 'app', 'javascript', 'packs', '*.js*')).reduce(
-    function(map, entry) {
-      var basename = path.basename(entry, extname(entry))
-      map[basename] = entry
-      return map
-    }, {}
-  ),
+  entry: entry,
 
   output: { filename: '[name].js', path: path.resolve('..', 'public', 'packs') },
 
@@ -40,7 +53,18 @@ module.exports = {
     ]
   },
 
-  plugins: [],
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "packs-bundle",
+
+      // filename: "vendor.js"
+      // (Give the chunk a different name)
+
+      minChunks: Infinity,
+      // (with more entries, this ensures that no other module
+      //  goes into the vendor chunk)
+    })
+  ],
 
   resolve: {
     extensions: [ '.js', '.coffee' ],
@@ -52,5 +76,9 @@ module.exports = {
 
   resolveLoader: {
     modules: [ path.resolve('../vendor/node_modules') ]
-  }
+  },
+
+  externals: {
+    'jquery': 'jQuery',
+  },
 }
