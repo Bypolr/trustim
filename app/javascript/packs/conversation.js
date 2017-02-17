@@ -30,6 +30,7 @@ class Conversation {
 	received(data) {
 		log('received message');
 		this._view.append(data.message);
+		this.scrollBottom();
 	}
 
 	getChannel(channel, cid) {
@@ -42,16 +43,17 @@ class Conversation {
 			connected() {
 				log(`Connected to ${channel}`);
 				// self is online
-				$('.message.message-self').addClass('online');
+				$('.conversation-view').addClass('self-online');
 			},
 			disconnected() {
 				log(`Disconnected from ${channel}`);
 				// self is offline
-				$('.message.message-self')
-					.removeClass('online')
-					.addClass('offline');
+				$('.conversation-view')
+					.removeClass('self-online')
+					.addClass('self-offline');
 			},
 			received(data) {
+				// Hey, @yiliang, why this hook func never called ?
 				if (data.message) {
 					self.received({
 						channel,
@@ -111,9 +113,15 @@ class Conversation {
 				this.clear();
 			});
 	}
+
+	scrollBottom() {
+		var view = document.querySelector('.conversation-view');
+	    view.scrollTop = view.scrollHeight;
+	}
 }
 
 $(document).ready(() => {
 	const conversation = new Conversation();
 	conversation.init();
+	conversation.scrollBottom();
 });
