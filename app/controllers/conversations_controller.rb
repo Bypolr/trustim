@@ -26,7 +26,6 @@ class ConversationsController < ApplicationController
 
   # Check if users pare exists.
   def check_user_pair
-    # TODO to test check_user_pair function
     @sender = User.find_by(username: params[:sender_username])
     @recipient = User.find_by(username: params[:recipient_username])
     unless @sender && @recipient
@@ -34,5 +33,4 @@ class ConversationsController < ApplicationController
       redirect_to users_url
     end
   end
-
 end
