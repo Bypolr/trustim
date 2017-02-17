@@ -8,7 +8,7 @@ class MessagesChannel < ApplicationCable::Channel
   end
 
   def receive(payload)
-    message = Message.new(
+    Message.new(
         body: payload['message'],
         user: current_user,
         conversation: Conversation.find(payload['conversation_id'])
