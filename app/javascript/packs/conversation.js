@@ -34,23 +34,19 @@ class Conversation {
   }
 
   appendMessage(message) {
-    var appended = "";
-    if (message.user_id === config.currentUserId ) {
-      appended += '<div class="message message-self">';
-    } else {
-      appended += '<div class="message message-friend">';
-    }
-    appended += '\
-      <div class="message-user">\
-        <span class="realtime-status"></span>\
-        <span class="username">'+message.username+'</span>\
-        <time class="time">'+message.created_at + '</time>\
-      </div>\
-        <div class="message-bubble">\
-          <div class="message-content">'+message.body +'</div>\
-        </div>\
-    </div>\
-    ';
+    var classSuffix = message.user_id === config.currentUserId ? 'self' : 'friend';
+    var appended = $('<div/>').addClass('message message-'+classSuffix);
+
+    $('<div/>').addClass('message-user')
+    .append($('<span/>').addClass('realtime-status'))
+    .append($('<span>'+message.username+'</span>').addClass('username'))
+    .append($('<time>'+message.created_at+'</time>').addClass('time'))
+    .appendTo(appended);
+
+    $('<div/>').addClass('message-bubble')
+    .append($('<div>'+message.body+'</div>').addClass('message-content'))
+    .appendTo(appended);
+
     this._view.append(appended);
   }
 
