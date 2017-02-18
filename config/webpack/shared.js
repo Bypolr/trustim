@@ -66,7 +66,7 @@ module.exports = {
       minChunks: Infinity,
       // (with more entries, this ensures that no other module
       //  goes into the vendor chunk)
-    })
+    }),
   ],
 
   resolve: {
