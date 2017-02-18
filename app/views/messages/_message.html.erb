@@ -1,9 +1,14 @@
-<div class="message">
+<% if message.user_id == current_user.id %>
+<div class="message message-self">
+<% else %>
+<div class="message message-friend">
+<% end %>
   <div class="message-user">
-    <span><%= message.friendly_create_at %></span>
-    <span><%= message.user.username %>:</span>
+    <span class="realtime-status"></span>
+    <span class="username"><%= message.user.username %></span>
+    <time class="time"><%= message.friendly_create_at %></time>
   </div>
-  <div class="message-content">
-    <%= message.body %>
-  </div>
+    <div class="message-bubble">
+      <div class="message-content"><%= message.body %></div>
+    </div>
 </div>

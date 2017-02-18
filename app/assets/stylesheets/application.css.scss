@@ -1,5 +1,9 @@
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+@import "conversation";
+
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -16,10 +20,6 @@
 $gray-medium-light: #eaeaea;
 
 /* universal */
-
-body {
-  padding-top: 60px;
-}
 
 section {
   overflow: auto;
