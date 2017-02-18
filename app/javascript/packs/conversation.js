@@ -29,9 +29,30 @@ class Conversation {
 
 	received(data) {
 		log('received message');
-		this._view.append(data.message);
+    this.appendMessage(data.message);
 		this.scrollBottom();
 	}
+
+  appendMessage(message) {
+    var appended = "";
+    if (message.user_id === config.currentUserId ) {
+      appended += '<div class="message message-self">';
+    } else {
+      appended += '<div class="message message-friend">';
+    }
+    appended += '\
+      <div class="message-user">\
+        <span class="realtime-status"></span>\
+        <span class="username">'+message.username+'</span>\
+        <time class="time">'+message.created_at + '</time>\
+      </div>\
+        <div class="message-bubble">\
+          <div class="message-content">'+message.body +'</div>\
+        </div>\
+    </div>\
+    ';
+    this._view.append(appended);
+  }
 
 	getChannel(channel, cid) {
 		let self = this;
@@ -53,7 +74,6 @@ class Conversation {
 					.addClass('self-offline');
 			},
 			received(data) {
-				// Hey, @yiliang, why this hook func never called ?
 				if (data.message) {
 					self.received({
 						channel,
