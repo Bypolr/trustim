@@ -92,3 +92,9 @@ Rx.Observable.of(1,2,3);
 this is a entry file, you can put it in your `message.html.erb` file:
 
 `<%= javascript_pack_tag 'message' %>`
+
+### Start webpack dev server
+
+```bash
+bin/webpack-dev-server
+```
