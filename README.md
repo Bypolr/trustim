@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Bypolr/trustim.svg?branch=master)](https://travis-ci.org/Bypolr/trustim)
+
 # README
 
 Trust IM sample app.
