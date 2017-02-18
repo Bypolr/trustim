@@ -1,7 +1,7 @@
 
 import Rx from 'rxjs/Rx';
 import Message from "components/Message";
-import appendReactDOM from 'helpers/appendReactDOM';
+import appendReactDOM from 'append-react-dom';
 
 const App = window.App;
 const config = App.config;

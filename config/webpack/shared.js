@@ -20,6 +20,7 @@ var entry = glob.sync(path.join('..', 'app', 'javascript', 'packs', '*.js*')).re
 // common
 entry['packs-bundle'] = [
   'rxjs/Rx',
+  'react',
   'react-dom',
   path.join('..', 'app', 'javascript', 'packs', 'common.js'),
 ];
@@ -83,6 +84,5 @@ module.exports = {
   externals: {
     'jquery': 'jQuery',
     'jQuery': 'jQuery',
-    'react': 'React',
   },
 }
