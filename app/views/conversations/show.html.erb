@@ -3,6 +3,7 @@
     this._global || (this._global = {});
     this._global.channel = 'MessagesChannel';
     this._global.conversationId = '<%= @conversation.id %>';
+    this._global.currentUserId = '<%= current_user.id %>';
 }).call(this);
 </script>
 
