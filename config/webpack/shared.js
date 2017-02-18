@@ -20,6 +20,7 @@ var entry = glob.sync(path.join('..', 'app', 'javascript', 'packs', '*.js*')).re
 // common
 entry['packs-bundle'] = [
   'rxjs/Rx',
+  'react-dom',
   path.join('..', 'app', 'javascript', 'packs', 'common.js'),
 ];
 
@@ -32,11 +33,12 @@ module.exports = {
     rules: [
       { test: /\.coffee(.erb)?$/, loader: "coffee-loader" },
       {
-        test: /\.js(.erb)?$/,
+        test: /\.jsx?(.erb)?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
           presets: [
+            'react',
             [ 'latest', { 'es2015': { 'modules': false } } ]
           ]
         }
@@ -80,5 +82,7 @@ module.exports = {
 
   externals: {
     'jquery': 'jQuery',
+    'jQuery': 'jQuery',
+    'react': 'React',
   },
 }

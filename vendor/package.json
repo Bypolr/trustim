@@ -3,6 +3,7 @@
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
     "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.12.3",
     "glob": "^7.1.1",
@@ -13,6 +14,8 @@
     "webpack-merge": "^2.6.1"
   },
   "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "rxjs": "^5.1.0"
   }
 }

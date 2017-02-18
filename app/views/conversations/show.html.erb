@@ -1,24 +1,26 @@
+<% content_for :title, "conversation" %>
+
 <script>
 (function () {
-    this._global || (this._global = {});
-    this._global.channel = 'MessagesChannel';
-    this._global.conversationId = '<%= @conversation.id %>';
-    this._global.currentUserId = '<%= current_user.id %>';
+  var config = this.App.config || (this.App.config = {}, this.App.config);
+  config.channel = 'MessagesChannel';
+  config.conversationId = '<%= @conversation.id %>';
+  config.currentUserId = '<%= current_user.id %>';
 }).call(this);
 </script>
 
 <div class="conversation">
-    <div class="conversation-view" >
-      <%= render @conversation.messages %>
-    </div>
+  <div class="conversation-view" >
+    <%= render @conversation.messages %>
+  </div>
 
-    <div class="conversation-form">
-        <%= form_for :message do |f| %>
-          <%= f.text_area :body, class: 'form-control' %>
-          <%= hidden_field_tag "message[user_id]", current_user.id %>
-          <%= hidden_field_tag "message[conversation_id]", @conversation.id %>
-        <% end %>
-    </div>
+  <div class="conversation-form">
+    <%= form_for :message do |f| %>
+      <%= f.text_area :body, class: 'form-control' %>
+      <%= hidden_field_tag "message[user_id]", current_user.id %>
+      <%= hidden_field_tag "message[conversation_id]", @conversation.id %>
+    <% end %>
+  </div>
 </div>
 
 <%= javascript_pack_tag 'conversation' %>

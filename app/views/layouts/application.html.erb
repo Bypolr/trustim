@@ -5,6 +5,9 @@
     <%= render 'layouts/rails_default' %>
     <%= render 'layouts/shim' %>
     <%= action_cable_meta_tag %>
+    <script type="text/javascript">
+    window.App || (window.App = {});
+    </script>
   </head>
 
   <body>
