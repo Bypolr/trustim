@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Bypolr/trustim.svg?branch=master)](https://travis-ci.org/Bypolr/trustim)
+
 # README
 
 Trust IM sample app.
@@ -92,3 +94,9 @@ Rx.Observable.of(1,2,3);
 this is a entry file, you can put it in your `message.html.erb` file:
 
 `<%= javascript_pack_tag 'message' %>`
+
+### Start webpack dev server
+
+```bash
+bin/webpack-dev-server
+```
