@@ -1,8 +1,10 @@
 
 import Rx from 'rxjs/Rx';
+import Message from "components/Message";
+import appendReactDOM from 'append-react-dom';
 
-const config = window._global || {};
 const App = window.App;
+const config = App.config;
 const log = window.console.log.bind(window.console);
 
 // class Channel ....
@@ -33,21 +35,17 @@ class Conversation {
     this.scrollBottom();
   }
 
+  isSelf(id) {
+    return id === config.currentUserId;
+  }
+
   appendMessage(message) {
-    var classSuffix = message.user_id === config.currentUserId ? 'self' : 'friend';
-    var appended = $('<div/>').addClass('message message-'+classSuffix);
+    let isSelf = this.isSelf;
 
-    $('<div/>').addClass('message-user')
-    .append($('<span/>').addClass('realtime-status'))
-    .append($('<span>'+message.username+'</span>').addClass('username'))
-    .append($('<time>'+message.created_at+'</time>').addClass('time'))
-    .appendTo(appended);
-
-    $('<div/>').addClass('message-bubble')
-    .append($('<div>'+message.body+'</div>').addClass('message-content'))
-    .appendTo(appended);
-
-    this._view.append(appended);
+    appendReactDOM(Message, this._view, {
+      message,
+      isSelf
+    });
   }
 
   getChannel(channel, cid) {

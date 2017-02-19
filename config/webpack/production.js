@@ -7,11 +7,14 @@ var merge   = require('webpack-merge')
 var config = require('./shared.js')
 
 module.exports = merge(config, {
+  devtool: 'sourcemap',
+
   output: { filename: '[name]-[hash].js' },
 
   plugins: [
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
   ]
 })
