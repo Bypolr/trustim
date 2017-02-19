@@ -33,11 +33,15 @@ Learn more about the **trustim** project requirements, licensing, and contributi
 2. Run command `rbenv install 2.4.0` to install ruby.
 3. Install postgres.
 4. Install redis.
-5. Run command `gem install bundler` to install bundler.
-6. Check out the git repository.
-7. Run command `bundle` in the project directory to install the dependencies.
-8. Create db schema by `bin/rails db:create`
-9. `foreman start`
+5. Install yarn.
+6. Run command `gem install bundler` to install bundler.
+7. Check out the git repository.
+8. Run command `bundle` in the project directory to install the dependencies.
+9. Create db schema by `bin/rails db:create`.
+10. Run `bin/yarn install` to install javascript dependencies.
+11. Run `bin/webpack-dev-server` to provide live assets reloading.
+12. Run `foreman start` to start.
+13. Have fun.
 
 ### Other
 
