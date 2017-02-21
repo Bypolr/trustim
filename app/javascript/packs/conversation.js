@@ -73,6 +73,9 @@ class Conversation {
             channel,
             message: data.message
           });
+          this.perform('got', {
+            message_id: data.message.message_id,
+            user_id: config.currentUserId});
         }
       },
       appear() {
