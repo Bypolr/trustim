@@ -11,7 +11,13 @@
 
 <div class="conversation">
   <div class="conversation-view" >
-    <%= render @conversation.messages %>
+    <%= render @read_messages %>
+
+    <% if @has_unread_messages %>
+      <br> ==== last seen ==== <br>
+      <%= render @unread_messages %>
+    <% end %>
+
   </div>
 
   <div class="conversation-form">
