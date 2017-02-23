@@ -9,7 +9,7 @@ class Message < ApplicationRecord
   scope :for_display, -> { order(:created_at).last(50) }
 
   after_create_commit {
-    MessageBroadcastJob.perform_now self
+    MessageBroadcastJob.perform_later self
     # mark_as_read! for: self.user
     # mark all messages in this conversation as read by self.user
     messages = Message.where(conversation: self.conversation)
