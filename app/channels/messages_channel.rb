@@ -14,4 +14,10 @@ class MessagesChannel < ApplicationCable::Channel
         conversation: Conversation.find(payload['conversation_id'])
     ).save
   end
+
+  def got(payload)
+    message = Message.find_by(id: payload['message_id'])
+    user = User.find_by(id: payload['user_id'])
+    message.mark_as_read! for: user
+  end
 end

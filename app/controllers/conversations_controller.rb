@@ -5,9 +5,21 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.between(@sender.id, @recipient.id).first
+
     unless @conversation
       @conversation = Conversation.create!(sender_id: @sender.id, recipient_id: @recipient.id)
+    else
+
+      @unread_messages = @conversation.messages.unread_by(current_user).order(:created_at)
+      @has_unread_messages = @unread_messages.count > 0
+
+      if @has_unread_messages
+        Message.mark_as_read! @unread_messages.to_a, for: current_user
+      end
+      @read_messages = @conversation.messages.order(:created_at) - @unread_messages
+
     end
+
     render :show
   end
 

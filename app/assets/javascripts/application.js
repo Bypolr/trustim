@@ -16,4 +16,3 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
-//= require_tree ./channels

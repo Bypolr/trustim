@@ -14,8 +14,8 @@ User.create!(username: "yiliangt5",
              activated: true,
              activated_at: Time.zone.now)
 
-99.times do |n|
-  username = Faker::Name.first_name
+20.times do |n|
+  username = Faker::Name.first_name.downcase
   email = "#{username.downcase}@gmail.com"
   password = "password"
   if !User.find_by(username: username)

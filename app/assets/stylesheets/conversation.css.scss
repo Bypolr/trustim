@@ -98,3 +98,33 @@
 .self-online  .message-self .realtime-status {
 	background-color: #7ED81B;
 }
+
+$unread-border-color: lighten(#D8D8D8, 10%);
+.conversation-unread {
+  text-align: center;
+  border-top: 1px solid $unread-border-color;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .conversation-unread-label {
+    position: relative;
+    top: -10px;
+    background-color: #f1f0f0;
+    border-radius: 20px;
+    padding: 5px 10px;
+    display: inline;
+    color: darken(#f1f0f0, 10%);
+    font-size: 12px;
+  }
+}
+
+// :target {
+//   animation: highlight 2s ease;
+//   transform: translateX(20px);
+// }
+
+// @keyframes highlight {
+//   0% { border-color: red; }
+//   20% { border-color: $unread-border-color; }
+//   50% { border-color: red; }
+//   100% { border-color: $unread-border-color; }
+// }

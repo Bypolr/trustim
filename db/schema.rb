@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209145222) do
+ActiveRecord::Schema.define(version: 20170222013607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,11 +28,20 @@ ActiveRecord::Schema.define(version: 20170209145222) do
     t.text     "body"
     t.uuid     "user_id"
     t.uuid     "conversation_id"
-    t.boolean  "read",            default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+    t.index ["created_at"], name: "index_messages_on_created_at", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "read_marks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid     "reader_id"
+    t.string   "reader_type"
+    t.uuid     "readable_id"
+    t.string   "readable_type"
+    t.datetime "timestamp"
+    t.index ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true, using: :btree
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -56,4 +65,6 @@ ActiveRecord::Schema.define(version: 20170209145222) do
   add_foreign_key "conversations", "users", column: "sender_id"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "read_marks", "messages", column: "readable_id"
+  add_foreign_key "read_marks", "users", column: "reader_id"
 end

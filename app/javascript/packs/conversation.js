@@ -32,7 +32,7 @@ class Conversation {
   received(data) {
     log('received message');
     this.appendMessage(data.message);
-    this.scrollBottom();
+    this.scrollToBottom();
   }
 
   isSelf(id) {
@@ -73,6 +73,9 @@ class Conversation {
             channel,
             message: data.message
           });
+          this.perform('got', {
+            message_id: data.message.message_id,
+            user_id: config.currentUserId});
         }
       },
       appear() {
@@ -128,14 +131,33 @@ class Conversation {
       });
   }
 
-  scrollBottom() {
-    var view = document.querySelector('.conversation-view');
-      view.scrollTop = view.scrollHeight;
+  scrollToBottom() {
+    let view = document.querySelector('.conversation-view');
+    view.scrollTop = view.scrollHeight;
+  }
+
+  scrollToUnread() {
+    let view = document.querySelector('.conversation-view');
+    let unread = document.querySelector('#unread-link');
+    let offsetTop = unread.offsetTop - view.offsetTop;
+    // show a space above the unread line.
+    view.scrollTop = offsetTop - 100;
+  }
+
+  scrollToBottomorUnread() {
+    if (document.querySelector('#unread-link')) {
+      return this.scrollToUnread();
+    } else {
+      return this.scrollToBottom();
+    }
   }
 }
 
 $(document).ready(() => {
   const conversation = new Conversation();
   conversation.init();
-  conversation.scrollBottom();
+  conversation.scrollToBottomorUnread();
+
+  window.conversation = conversation;
+  console.log(conversation);
 });
