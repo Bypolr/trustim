@@ -17,14 +17,18 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 gem 'bcrypt', '~> 3.1.7'
 gem 'unread'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
 gem 'foreman'
+gem 'webpacker', github: 'rails/webpacker'
+gem 'execjs'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'faker', '~> 1.7.3'
-  gem 'webpacker', github: 'rails/webpacker'
 end
 
 group :test do

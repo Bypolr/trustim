@@ -130,4 +130,5 @@ Temporary Items
 
 # End of https://www.gitignore.io/api/rails,ruby,osx,macos
 /public/packs
+/public/assets
 /vendor/node_modules
