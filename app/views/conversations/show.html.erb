@@ -13,7 +13,7 @@
   <div class="conversation-view" >
     <%= render @read_messages %>
 
-    <% if @has_unread_messages %>
+    <% if @unread_messages.any? %>
       <div class="conversation-unread" id="unread-link">
         <div class="conversation-unread-label">以下是未读消息</div>
       </div>

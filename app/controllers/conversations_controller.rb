@@ -6,18 +6,24 @@ class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.between(@sender.id, @recipient.id).first
 
+    # Initialize messages arrays used in template.
+    @unread_messages = []
+    @read_messages = []
+
+    # Create the conversation between users if it does not exist.
     unless @conversation
       @conversation = Conversation.create!(sender_id: @sender.id, recipient_id: @recipient.id)
     else
+      # Get read/unread messages from the conversation for current user.
+      unless @conversation.messages.empty?
+        @unread_messages = @conversation.unread_messages_for(current_user)
+        @read_messages = @conversation.read_messages_for(current_user)
 
-      @unread_messages = @conversation.messages.unread_by(current_user).order(:created_at) || []
-      @has_unread_messages = @unread_messages.count > 0
-
-      if @has_unread_messages
-        Message.mark_as_read! @unread_messages.to_a, for: current_user
+        # Mark @unread_messages as read.
+        if @unread_messages.any?
+          Message.mark_as_read! @unread_messages.to_a, for: current_user
+        end
       end
-      @read_messages = (@conversation.messages.order(:created_at) - @unread_messages) || []
-
     end
 
     render :show

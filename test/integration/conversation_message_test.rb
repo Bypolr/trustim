@@ -7,6 +7,13 @@ class ConversationMessageTest < ActionDispatch::IntegrationTest
     @user2 = users(:archer)
   end
 
+  test "should be able to enter a conversation with no messages" do
+    log_in_as(@user1)
+    get show_conversation_path(@user1.username, @user2.username)
+    assert_template 'conversations/show'
+    assert_response :success
+  end
+
   test "should be able to view messages in conversation" do
     conversation = Conversation.new(sender: @user1, recipient: @user2)
     conversation.save!
@@ -25,6 +32,6 @@ class ConversationMessageTest < ActionDispatch::IntegrationTest
     log_in_as(@user2)
     get show_conversation_path(@user2.username, @user1.username)
     assert_select '.message', 2
-
   end
+
 end
