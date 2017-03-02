@@ -27,21 +27,47 @@ Learn more about the **trustim** project requirements, licensing, and contributi
 
 ## Getting Started
 
-### Setup
+### Dev Setup
 
 1. Install rbenv for ruby version management.
+
 2. Run command `rbenv install 2.4.0` to install ruby.
+
 3. Install postgres.
+
 4. Install redis.
+
 5. Install yarn.
+
 6. Run command `gem install bundler` to install bundler.
+
 7. Check out the git repository.
+
 8. Run command `bundle` in the project directory to install the dependencies.
+
 9. Create db schema by `bin/rails db:create`.
+
 10. Run `bin/yarn install` to install javascript dependencies.
+
 11. Run `bin/webpack-dev-server` to provide live assets reloading.
+
 12. Run `foreman start` to start.
+
 13. Have fun.
+
+
+### Additional steps for production setup:
+
+1. Run `rails webpacker:compile`
+2. Run `rails assets:precompile`
+3. export following env variables:
+   - MAIL_HOST - hostname for 'send from' entry
+   - MAIL_SMTP_ADDR - your smtp server address
+   - MAIL_PORT - your smtp server port
+   - MAIL_USER_NAME - your smtp server username
+   - MAIL_PASSWORD - your smtp server password
+
+
 
 ### Other
 
