@@ -41,7 +41,7 @@ Rails.application.configure do
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
-  # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
+  config.action_cable.allowed_request_origins = [ 'http://trustim.club']
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -60,17 +60,15 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "trust_#{Rails.env}"
   config.action_mailer.perform_caching = false
-  host = 'trustim.club'
-  config.action_mailer.default_url_options = { host: host }
-
+  config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :authentication => :plain,
-    :address => "smtp address",
-    :port => "smtp port",
-    :domain => "mail domain",
-    :user_name => "mail username",
-    :password => "password"
+    :address => ENV['MAIL_SMTP_ADDR'],
+    :port => ENV['MAIL_PORT'],
+    :domain => ENV['MAIL_HOST'],
+    :user_name => ENV['MAIL_USER_NAME'],
+    :password => ENV['MAIL_PASSWORD']
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
