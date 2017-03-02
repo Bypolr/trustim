@@ -20,3 +20,4 @@ test:
 production:
   <<: *default
   database: trust_production
+  password: <%= ENV['DB_PASSWORD'] %>
