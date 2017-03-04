@@ -1,2 +1,2 @@
-web:    bundle exec rails server
+web:    bundle exec passenger start
 worker: bundle exec sidekiq

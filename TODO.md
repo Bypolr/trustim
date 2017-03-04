@@ -4,7 +4,7 @@
 
 [x] real time messages to queue
 
-[ ] multi conversation testing
+[x] multi conversation testing
 
 [ ] status/message sync
 
