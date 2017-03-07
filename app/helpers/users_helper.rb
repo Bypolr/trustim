@@ -7,4 +7,10 @@ module UsersHelper
 		gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?size=#{options[:size]}"
 		image_tag(gravatar_url, alt: user.username, class: "gravatar")
 	end
+
+  def show_unread_count
+    if logged_in? && current_user.unread_count > 0
+      content_tag(:div, "You have #{current_user.unread_count} unread messages.", class: "alert alert-info")
+    end
+  end
 end

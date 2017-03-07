@@ -28,7 +28,7 @@ class Message < ApplicationRecord
   def self.for_user(user_id)
     messages = Message.none #=> Empty relation
     Conversation.for_user(user_id).each do |c|
-      messages.or(Message.for_conversation(c))
+      messages = messages.or(Message.for_conversation(c))
     end
     messages
   end

@@ -7,6 +7,17 @@ class UserTest < ActiveSupport::TestCase
 			email:"user@example.com",
 			password: "foobar",
 			password_confirmation: "foobar")
+
+    @user1 = users(:michael)
+    @user2 = users(:archer)
+
+    @conversation = Conversation.new(sender: @user1, recipient: @user2)
+    @conversation.save!
+
+    @message1 = Message.new(user: @user1, conversation: @conversation, body: 'no-blank')
+    @message1.save!
+    @message2 = Message.new(user: @user1, conversation: @conversation, body: 'no-blank')
+    @message2.save!
 	end
 
 	test "should be valid" do
@@ -76,6 +87,10 @@ class UserTest < ActiveSupport::TestCase
 
   test "authenticated? should return false for a user with nil remember_digest" do
     assert_not @user.authenticated?(:remember, '')
+  end
+
+  test "unread count should be correct" do
+    assert_equal 2, @user2.unread_count
   end
 
 end

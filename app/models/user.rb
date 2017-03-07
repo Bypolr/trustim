@@ -83,6 +83,18 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  # Returns unread readable message count for a user.
+  def unread_count
+    messages = Message.for_user(id)
+    count = 0
+    messages.each do |m|
+      if m.unread?(self)
+        count += 1
+      end
+    end
+    count
+  end
+
   private
 
     def downcase_email
