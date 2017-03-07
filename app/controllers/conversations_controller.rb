@@ -15,7 +15,7 @@ class ConversationsController < ApplicationController
       @conversation = Conversation.create!(sender_id: @sender.id, recipient_id: @recipient.id)
     else
       # Get read/unread messages from the conversation for current user.
-      unless @conversation.messages.empty?
+      if @conversation.messages.any?
         @unread_messages = @conversation.unread_messages_for(current_user)
         @read_messages = @conversation.read_messages_for(current_user)
 
