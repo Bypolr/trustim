@@ -14,6 +14,10 @@ class Conversation < ApplicationRecord
       ", sender_id, recipient_id, recipient_id, sender_id)
   end
 
+  scope :for_user, -> (user_id) do
+    where("sender_id = ? OR recipient_id = ?", user_id, user_id)
+  end
+
   def unread_messages_for(user)
     self.messages.unread_by(user).order(:created_at)
   end
@@ -35,6 +39,4 @@ class Conversation < ApplicationRecord
         errors.add(:conversation, "already existed")
       end
     end
-
-
 end
