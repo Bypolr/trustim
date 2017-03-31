@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.4.0'
+ruby '2.4.1'
 
 gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.19.0'
@@ -18,9 +18,7 @@ gem 'will_paginate-bootstrap'
 gem 'bcrypt', '~> 3.1.7'
 gem 'unread'
 gem 'passenger', '~> 5.1.2'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails'
 
 gem 'foreman'
 gem 'webpacker', github: 'rails/webpacker', branch: 'master'

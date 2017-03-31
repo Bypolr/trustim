@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/rails/webpacker.git
-  revision: a85a3ab0eac6626af9da0efbda9320404114d675
+  revision: a107b70f579e0cf34988e8b3627ba8d66ffb7f62
   branch: master
   specs:
-    webpacker (1.0)
+    webpacker (1.1)
       activesupport (>= 4.2)
       multi_json (~> 1.2)
       railties (>= 4.2)
@@ -48,26 +48,39 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    airbrussh (1.1.2)
+      sshkit (>= 1.6.1, != 1.7.0)
     ansi (1.5.0)
     arel (7.1.4)
-    autoprefixer-rails (6.7.6)
+    autoprefixer-rails (6.7.7.1)
       execjs
     bcrypt (3.1.11)
+    bindex (0.5.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
+    capistrano (3.8.0)
+      airbrussh (>= 1.0.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (1.2.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.2.3)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
-    debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
     faker (1.7.3)
       i18n (~> 0.5)
     ffi (1.9.18)
-    foreman (0.83.0)
+    foreman (0.84.0)
       thor (~> 0.19.1)
     formatador (0.2.5)
     globalid (0.3.7)
@@ -89,11 +102,11 @@ GEM
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
-    jquery-rails (4.2.2)
+    jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    libv8 (3.16.14.17)
+    libv8 (3.16.14.19)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -115,8 +128,11 @@ GEM
       ruby-progressbar
     multi_json (1.12.1)
     nenv (0.3.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (4.1.0)
     nio4r (2.0.0)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
@@ -129,7 +145,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    puma (3.7.1)
+    puma (3.8.2)
     rack (2.0.1)
     rack-protection (1.5.3)
       rack
@@ -177,7 +193,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
     shellany (0.0.1)
-    sidekiq (4.2.9)
+    sidekiq (4.2.10)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
@@ -195,25 +211,28 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sshkit (1.13.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
     thor (0.19.4)
     thread_safe (0.3.6)
-    tilt (2.0.6)
+    tilt (2.0.7)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (3.1.3)
+    uglifier (3.1.11)
       execjs (>= 0.3.0, < 3)
-    unread (0.8.3)
+    unread (0.9.0)
       activerecord (>= 3)
-    web-console (3.4.0)
+    web-console (3.5.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
-      debug_inspector
+      bindex (>= 0.4.0)
       railties (>= 5.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
@@ -230,6 +249,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.7)
   byebug
+  capistrano-rails
   execjs
   faker (~> 1.7.3)
   foreman
@@ -259,7 +279,7 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.4.1p111
 
 BUNDLED WITH
-   1.14.3
+   1.14.6

@@ -21,7 +21,7 @@ Learn more about the **trustim** project requirements, licensing, and contributi
 
 ### Requirements
 
-- Ruby v2.4.0
+- Ruby v2.4.1
 - Postgres v9.6
 - redis v3.2.8
 
@@ -31,7 +31,7 @@ Learn more about the **trustim** project requirements, licensing, and contributi
 
 1. Install rbenv for ruby version management.
 
-2. Run command `rbenv install 2.4.0` to install ruby.
+2. Run command `rbenv install 2.4.1` to install ruby.
 
 3. Install postgres.
 
