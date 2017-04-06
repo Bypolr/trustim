@@ -12,6 +12,7 @@ cache:
 install:
   - nvm install node
   - node -v
+  - bundle install
 addons:
   postgresql: "9.4"
 before_script:
