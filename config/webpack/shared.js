@@ -1,88 +1,52 @@
 // Note: You must restart bin/webpack-watcher for changes to take effect
+/* eslint global-require: 0 */
+/* eslint import/no-dynamic-require: 0 */
 
-var path = require('path')
-var glob = require('glob')
-var extname = require('path-complete-extname')
-var webpack = require('webpack')
+const webpack = require('webpack')
+const { basename, dirname, join, relative, resolve } = require('path')
+const { sync } = require('glob')
+const { readdirSync } = require('fs')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
+const extname = require('path-complete-extname')
+const { env, paths, publicPath, loadersDir } = require('./configuration.js')
 
-var entry = glob.sync(path.join('..', 'app', 'javascript', 'packs', '*.js*')).reduce(
-  function(map, entry) {
-    var basename = path.basename(entry, extname(entry))
-    if (basename === 'common') {
-      return map;
-    }
-
-    map[basename] = entry
-    return map
-  }, {}
-) || {};
-
-// common
-entry['packs-bundle'] = [
-  'rxjs/Rx',
-  'react',
-  'react-dom',
-  path.join('..', 'app', 'javascript', 'packs', 'common.js'),
-];
+const extensionGlob = `**/*{${paths.extensions.join(',')}}*`
+const packPaths = sync(join(paths.source, paths.entry, extensionGlob))
 
 module.exports = {
-  entry: entry,
+  entry: packPaths.reduce(
+    (map, entry) => {
+      const localMap = map
+      const namespace = relative(join(paths.source, paths.entry), dirname(entry))
+      localMap[join(namespace, basename(entry, extname(entry)))] = resolve(entry)
+      return localMap
+    }, {}
+  ),
 
-  output: { filename: '[name].js', path: path.resolve('..', 'public', 'packs') },
+  output: { filename: '[name].js', path: resolve(paths.output, paths.entry) },
 
   module: {
-    rules: [
-      { test: /\.coffee(.erb)?$/, loader: "coffee-loader" },
-      {
-        test: /\.jsx?(.erb)?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            'react',
-            [ 'latest', { 'es2015': { 'modules': false } } ]
-          ]
-        }
-      },
-      {
-        test: /.erb$/,
-        enforce: 'pre',
-        exclude: /node_modules/,
-        loader: 'rails-erb-loader',
-        options: {
-          runner: 'DISABLE_SPRING=1 ../bin/rails runner'
-        }
-      },
-    ]
+    rules: readdirSync(loadersDir).map(file => (
+      require(join(loadersDir, file))
+    ))
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "packs-bundle",
-
-      // filename: "vendor.js"
-      // (Give the chunk a different name)
-
-      minChunks: Infinity,
-      // (with more entries, this ensures that no other module
-      //  goes into the vendor chunk)
-    }),
+    new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(env))),
+    new ExtractTextPlugin(env.NODE_ENV === 'production' ? '[name]-[hash].css' : '[name].css'),
+    new ManifestPlugin({ fileName: paths.manifest, publicPath, writeToFileEmit: true })
   ],
 
   resolve: {
-    extensions: [ '.js', '.coffee' ],
+    extensions: paths.extensions,
     modules: [
-      path.resolve('../app/javascript'),
-      path.resolve('../vendor/node_modules')
+      resolve(paths.source),
+      resolve(paths.node_modules)
     ]
   },
 
   resolveLoader: {
-    modules: [ path.resolve('../vendor/node_modules') ]
-  },
-
-  externals: {
-    'jquery': 'jQuery',
-    'jQuery': 'jQuery',
-  },
+    modules: [paths.node_modules]
+  }
 }

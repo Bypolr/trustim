@@ -21,7 +21,6 @@ gem 'passenger', '~> 5.1.2'
 gem 'capistrano-rails'
 
 gem 'foreman'
-gem 'webpacker', github: 'rails/webpacker', branch: 'master'
 gem 'execjs'
 gem 'therubyracer'
 
@@ -38,6 +37,7 @@ group :test do
 end
 
 group :development do
+  gem 'webpacker', github: 'rails/webpacker'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'

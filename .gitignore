@@ -132,3 +132,5 @@ Temporary Items
 /public/packs
 /public/assets
 /vendor/node_modules
+/public/packs
+/node_modules
