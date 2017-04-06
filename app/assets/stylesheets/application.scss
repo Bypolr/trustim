@@ -1,0 +1,10 @@
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "helper";
+
+body {
+  background-color: $primary-bg;
+  font-size: 16px;
+  font-family: 'Lato', 'Neue Helvetica', Helvetica, Arial, sans-serif;
+}

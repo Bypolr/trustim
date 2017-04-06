@@ -1,27 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
   <head>
     <title><%= yield(:title) %></title>
     <%= csrf_meta_tags %>
-
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'pack-bundle' %>
 
     <%= render 'layouts/shim' %>
     <%= action_cable_meta_tag %>
-    <script type="text/javascript">
-    window.App || (window.App = {});
-    </script>
   </head>
-
   <body>
-    <%= render 'layouts/header' %>
     <div class="container">
-      <%= show_unread_count %>
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div,message, class: "alert alert-#{message_type}") %>
-      <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
     </div>
