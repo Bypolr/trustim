@@ -12,6 +12,8 @@ cache:
 install:
   - nvm install node
   - node -v
+  - npm i -g yarn
+  - yarn
   - bundle install
 addons:
   postgresql: "9.4"
