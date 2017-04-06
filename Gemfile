@@ -27,6 +27,7 @@ gem 'therubyracer'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'faker', '~> 1.7.3'
+  gem 'webpacker', github: 'rails/webpacker'
 end
 
 group :test do
@@ -37,7 +38,6 @@ group :test do
 end
 
 group :development do
-  gem 'webpacker', github: 'rails/webpacker'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
