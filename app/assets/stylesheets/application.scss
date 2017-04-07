@@ -2,9 +2,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "helper";
-
-body {
-  background-color: $primary-bg;
-  font-size: 16px;
-  font-family: 'Lato', 'Neue Helvetica', Helvetica, Arial, sans-serif;
-}
+@import "module/iconfont";
+@import "module/base";
+@import "module/global_bar";

@@ -1,9 +1,26 @@
-<div class="global-bar">
-  <nav class="navbar">
-    <ul class="list--unstyled">
-      <li class="navbar-menu">
-        <%= link_to "Home", root_path, class: 'navbar-menu__link' %>
-      </li>
-    </ul>
-  </nav>
+<div class="global-bar global-bar-wrapper">
+  <div class="container">
+    <nav class="navbar">
+      <ul class="list--unstyled">
+        <li class="navbar-menu">
+          <%= link_to(@root_path, :class => 'navbar-menu__link') do %>
+            <span class="iconfont icon">&#xe606;</span>
+            <span>Home</span>
+          <% end %>
+        </li>
+        <li class="navbar-menu">
+          <%= link_to("#", :class => 'navbar-menu__link') do %>
+            <span class="iconfont icon">&#xe663;</span>
+            <span class="fn-text-hide">Messages</span>
+          <% end %>
+        </li>
+        <li class="navbar-menu">
+          <%= link_to("#", :class => 'navbar-menu__link') do %>
+            <span class="iconfont icon">&#xe604;</span>
+            <span class="fn-text-hide">User Profile</span>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
