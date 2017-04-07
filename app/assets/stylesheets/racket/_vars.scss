@@ -1,8 +1,16 @@
 
 //
+// Sizes
+// ==================================
+$font-size-default: 14px !default;
+
+
+//
 // colors
 // ==================================
 
 $clr-bg: #f7f7fa;
 $clr-black: #353535;
 $clr-border: #e1e1e1;
+$clr-green: #009688;
+$clr-green-light: lighten($clr-green, 10%);

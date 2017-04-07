@@ -13,3 +13,37 @@
     visibility: hidden;
   }
 }
+
+@mixin vertical-center() {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateZ(0);
+}
+
+// Misc
+// --------------------------------------------------
+
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+$browser-context: parseInt($font-size-default); // Default
+
+@function em($pixels, $context: $browser-context) {
+  @return #{parseInt($pixels)/parseInt($context)}em
+}
+
+@function rem($pixel, $context: $browser-context) {
+  $unit: unit($pixel);
+  $val: parseInt($pixel);
+
+  @if $unit == "px" {
+    @return #{$val/parseInt($context)}rem
+  }
+
+  @if $unit == 'rem' {
+    @return #{$val}rem
+  }
+
+  @return #{$val/parseInt($context)}rem
+}

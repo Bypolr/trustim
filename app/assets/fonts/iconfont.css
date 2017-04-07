@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('./iconfont.eot?t=1491539414423'); /* IE9*/
-  src: url('./iconfont.eot?t=1491539414423#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('./iconfont.woff?t=1491539414423') format('woff'), /* chrome, firefox */
-  url('./iconfont.ttf?t=1491539414423') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('./iconfont.svg?t=1491539414423#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1491576085874'); /* IE9*/
+  src: url('iconfont.eot?t=1491576085874#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1491576085874') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1491576085874') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1491576085874#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -21,13 +21,13 @@
 
 .icon-add:before { content: "\e620"; }
 
-.icon-home:before { content: "\e606"; }
-
 .icon-people:before { content: "\e604"; }
+
+.icon-weibiaoti105:before { content: "\e614"; }
+
+.icon-home:before { content: "\e607"; }
 
 .icon-attach:before { content: "\e671"; }
 
 .icon-emoji:before { content: "\e64b"; }
-
-.icon-notify:before { content: "\e663"; }
 

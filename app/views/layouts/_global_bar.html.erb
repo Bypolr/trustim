@@ -1,26 +1,32 @@
 <div class="global-bar global-bar-wrapper">
   <div class="container">
     <nav class="navbar">
-      <ul class="list--unstyled">
+      <ul class="list-inline menus">
         <li class="navbar-menu">
           <%= link_to(@root_path, :class => 'navbar-menu__link') do %>
-            <span class="iconfont icon">&#xe606;</span>
+            <span class="iconfont icon">&#xe607;</span>
             <span>Home</span>
           <% end %>
         </li>
         <li class="navbar-menu">
           <%= link_to("#", :class => 'navbar-menu__link') do %>
-            <span class="iconfont icon">&#xe663;</span>
-            <span class="fn-text-hide">Messages</span>
-          <% end %>
-        </li>
-        <li class="navbar-menu">
-          <%= link_to("#", :class => 'navbar-menu__link') do %>
-            <span class="iconfont icon">&#xe604;</span>
-            <span class="fn-text-hide">User Profile</span>
+            <span class="iconfont icon">&#xe614;</span>
+            <span>Notifi</span>
           <% end %>
         </li>
       </ul>
     </nav>
+  </div>
+  <div class="profile-dropdown">
+    <% if logged_in? %>
+      <%= link_to('#', :class => 'profile-dropdown__link') do %>
+        <%= gravatar_for @current_user %>
+        <span><%= @current_user.email %></span>
+      <% end %>
+    <% else %>
+      <%= link_to('#', :class => 'profile-dropdown__link') do %>
+        <span>Login</span>
+      <% end %>
+    <% end %>
   </div>
 </div>
