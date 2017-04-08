@@ -2,8 +2,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "helper";
+@import "racket/flex";
 @import "module/iconfont";
 @import "module/base";
 @import "module/global_bar";
 @import "module/contacts";
+@import "module/chatbox";
 @import "main";

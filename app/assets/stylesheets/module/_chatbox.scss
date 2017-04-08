@@ -1,0 +1,35 @@
+
+.chatbox {
+  border: 1px solid $clr-border;
+  border-radius: 5px;
+
+  .chatbox-input {
+    outline: 0;
+    padding: rem(3px) rem(5px);
+    min-height: rem(80px);
+    max-height: rem(140px);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .chatbox-tool {
+    margin: 0;
+    align-items: flex-end;
+    justify-content: space-between;
+    // line-height: 0;
+    padding-bottom: rem(3px);
+  }
+
+  .chatbox-tool__item {
+    color: #909090;
+    cursor: pointer;
+  }
+
+  .icon {
+    font-size: rem(25px);
+  }
+
+  .tool-attchment .icon {
+    margin-bottom: -1px;
+  }
+}

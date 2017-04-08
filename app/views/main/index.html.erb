@@ -2,7 +2,11 @@
 
 <%= render 'layouts/global_bar' %>
 <div class="container chat-main">
+<% if logged_in? %>
   <%= render 'main/contacts' %>
-  <%= render 'main/chatbox' %>
-  <%= render 'main/conversation' %>
+<% end %>
+  <div class="pannel">
+    <%= render 'main/chatbox' %>
+    <%= render 'main/conversation' %>
+  </div>
 </div>

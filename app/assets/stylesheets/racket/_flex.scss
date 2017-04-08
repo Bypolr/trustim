@@ -1,0 +1,58 @@
+
+.g-flex {
+  display: flex;
+  position: relative;
+  @include clearfix();
+
+  &.vertical-center {
+    align-items: center;
+  }
+}
+
+.g-column {
+  flex: 1;
+  position: relative;
+}
+
+.g-column-pack {
+  flex: 1;
+  flex-grow: 0;
+  flex-basis: initial;
+}
+
+
+//
+// grid system for browsers that sucks.
+// =====================================
+$layout-total-columns: 12;
+%column-base {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  z-index: 0;
+}
+
+.g-row {
+  position: relative;
+  display: block;
+  @include clearfix();
+}
+
+.g-col {
+  @extend %column-base;
+}
+
+/**
+ * g-col-x
+ */
+@for $i from 1 through 12 {
+  .g-col-#{$i} {
+    @extend %column-base;
+    width: percentage($i / $layout-total-columns);
+  }
+}
+
+/**
+目前已知的兼容性，旧的浏览器可能不支持flex-wrap和align-self
+如果要应用padding和margin，建议在g-column里面放一个div
+*/
